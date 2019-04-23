@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="LIBRARY_EAR">
+        <wb-resource deploy-path="/" source-path="/EarContent" tag="defaultRootSource"/>
+        <dependent-module archiveName="LIBRARY_JPA.jar" deploy-path="/lib" handle="module:/resource/LIBRARY_JPA/LIBRARY_JPA">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="LIBRARY_EJB.jar" deploy-path="/" handle="module:/resource/LIBRARY_EJB/LIBRARY_EJB">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="LIBRARY_EJBClient.jar" deploy-path="/" handle="module:/resource/LIBRARY_EJBClient/LIBRARY_EJBClient">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>

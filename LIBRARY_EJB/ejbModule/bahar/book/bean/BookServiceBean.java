@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import bahar.book.entity.Book;
-import bahar.book.service.BookService;
+import bahar.library.service.BookService;
 
 @Stateless
 public class BookServiceBean implements BookService {

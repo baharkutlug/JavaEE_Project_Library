@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import bahar.book.entity.Member;
-import bahar.book.service.MemberService;
+import bahar.library.service.MemberService;
 
 @Stateless
 public class MemberServiceBean implements MemberService {

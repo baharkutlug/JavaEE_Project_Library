@@ -15,7 +15,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "LIB_MEMBER_BOOK")
 @NamedQueries({
-		@NamedQuery(name = "MemberBook.findMembersByBorrowedBookIdx", query = "SELECT MB.memCardIdx AND MB.borrowDate AND MB.returnDate FROM MemberBook MB WHERE MB.idx = 1?"),
 		@NamedQuery(name = "MemberBook.orderByLastUpdate", query = "SELECT MB FROM MemberBook MB ORDER BY MB.sysLastUpdate DESC") })
 
 public class MemberBook {

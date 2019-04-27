@@ -1,14 +1,12 @@
 package bahar.book.bean;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
-import bahar.book.entity.Member;
-import bahar.book.entity.Book;
-import bahar.book.entity.MemberBook;
 import bahar.library.service.LibraryService;
 
 @Stateless
@@ -19,77 +17,46 @@ public class LibraryServiceBean implements LibraryService {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public ArrayList<Member> findByMemberName(String name) {
-		// Dışardan verilen üye ismine göre bilgileri getiren aramayı yaratma
-		return (ArrayList<Member>) em.createQuery("SELECT m FROM Member m WHERE m.memFirstName = :name")
-				.setParameter("name", name).getResultList();
-
+	public <T> List<T> findByNamedQuery(Class<T> clazz, String namedQuery) {
+		return createNamedQuery(clazz, namedQuery).getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public ArrayList<Member> findByMemberIDX(int idx) {
-		// Dışarıdan verilen üye idx ine göre bilgileri getiren aramayı yaratma
-		return (ArrayList<Member>) em.createQuery("SELECT m FROM Member m WHERE m.idx = :idx").setParameter("idx", idx)
-				.getResultList();
+	public <T> List<T> findByNamedQuery(Class<T> clazz, String namedQuery, Object... params) {
+		return createNamedQuery(clazz, namedQuery, params).getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public ArrayList<MemberBook> findRecordByMemberName(String name) {
-		// Dışarıdan verilen üye ismine göre kitap alım kayıtlarını getiren sorguyu yaratma
-		int memberIDX = em.createQuery("SELECT m.idx FROM Member m WHERE m.memFirstName = :name").setParameter("name", name).getFirstResult();
-		return (ArrayList<MemberBook>) em.createQuery("SELECT mb FROM MemberBook mb WHERE mb.memCardIdx = :idx").setParameter("idx", memberIDX)
-				.getResultList();
+	public <T> List<T> findByNamedQuery(Class<T> clazz, String namedQuery, Integer readSize) {
+		return createNamedQuery(clazz, namedQuery).setMaxResults(readSize).getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public ArrayList<MemberBook> findRecordByMemberIDX(int idx) {
-		// Dışarıdan verilen üye ismine göre kitap alım kayıtlarını getiren sorguyu yaratma
-		return (ArrayList<MemberBook>) em.createQuery("SELECT mb FROM MemberBook mb WHERE mb.memCardIdx = :idx").setParameter("idx", idx)
-				.getResultList();
+	public <T> List<T> findByNamedQuery(Class<T> clazz, String namedQuery, Integer readSize, Object... params) {
+		return createNamedQuery(clazz, namedQuery, params).setMaxResults(readSize).getResultList();
+		
 	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public ArrayList<Book> findByBookName(String name) {
-		// Dışarıdan verilen kitap adına göre diğer bilgileri getiren sorguyu yaratma
-		return  (ArrayList<Book>) em.createQuery("SELECT b FROM Book b WHERE b.name = :name").setParameter("name", name)
-				.getResultList();
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public ArrayList<Book> findByBookIDX(int idx) {
-		// Dışarıdan verilen kitap idx ine göre diğer bilgileri getiren sorguyu yaratma
-		return (ArrayList<Book>) em.createQuery("SELECT b FROM Book b WHERE b.idx = :idx").setParameter("idx", idx)
-				.getResultList();
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public ArrayList<MemberBook> findRecordByBookName(String name) {
-		// Dışarıdan verilen kitap ismine göre kitap alım kayıtlarını getiren sorguyu yaratma
-		int bookIDX = em.createQuery("SELECT b.idx FROM Book b WHERE b.name = :name").setParameter("name", name).getFirstResult();
-		return (ArrayList<MemberBook>) em.createQuery("SELECT mb FROM MemberBook mb WHERE mb.bookIdx = :idx").setParameter("idx", bookIDX)
-				.getResultList();
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public ArrayList<MemberBook> findRecordByBookIDX(int idx) {
-		// Dışarıdan verilen kitap idx ine göre kitap alım kayıtlarını getiren sorguyu yaratma
-		return (ArrayList<MemberBook>) em.createQuery("SELECT mb FROM MemberBook mb WHERE mb.bookIdx = :idx").setParameter("idx", idx)
-				.getResultList();
-	}
-
 	
-	@SuppressWarnings("unchecked")
-	@Override
-	public ArrayList<MemberBook> findByLastUpdate() {
-		// Kayıtları sondan başa sıralayan sorguyu yaratma
-		return (ArrayList<MemberBook>) em.createQuery("SELECT mb FROM MemberBook mb ORDER BY mb.sysLastUpdate DESC").getResultList();
+	public Query createNamedQuery(Class<?> clazz,String namedQuery) {
+		Query query = em.createNamedQuery(namedQuery,clazz);
+		return query;
+	}
+	
+	public Query createNamedQuery(Class<?> clazz,String namedQuery, Object...params) {
+		Query query = em.createNamedQuery(namedQuery,clazz);
+		setParams(query, params);
+		return query;
+	}
+
+	public void setParams(Query query, Object... params) {
+		int indeks = 1;
+		for (Object param : params) {
+			query.setParameter(indeks++, param);
+		}
+
 	}
 
 }

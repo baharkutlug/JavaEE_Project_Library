@@ -1,6 +1,6 @@
 package bahar.library.service;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.Local;
 
@@ -9,8 +9,10 @@ import bahar.book.entity.MemberBook;
 @Local
 public interface MemberBookService {
 
-	public ArrayList<MemberBook> findMembersByBorrowedBookIdx();
+	public List<MemberBook> findBooksByBorrowedMemberIdx();
 
-	public ArrayList<MemberBook> orderByLastUpdate();
+	public List<MemberBook> findMembersByBorrowedBookIdx();
+
+	public List<MemberBook> listOfSpecificDateReturnBooks();
 
 }

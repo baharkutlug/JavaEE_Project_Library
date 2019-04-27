@@ -1,28 +1,60 @@
 package bahar.book.bean;
 
-import java.util.ArrayList;
+import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import bahar.book.entity.Book;
 import bahar.library.service.BookService;
+import bahar.library.service.LibraryService;
 
 @Stateless
 public class BookServiceBean implements BookService {
-	@PersistenceContext(unitName = "LIBRARY_DB")
-	EntityManager em;
 
-	@SuppressWarnings("unchecked")
+	@EJB
+	private LibraryService libraryService;
+
 	@Override
-	public ArrayList<Book> findBooksByNameAndAuthor() {
-		return (ArrayList<Book>) em.createNamedQuery("Book.findBooksByNameAndAuthor").getResultList();
+	public List<Book> findBooksByName(String name) {
+		// Verilen kitap ismine göre diğer bilgileri getiren sorguyu yaratma
+		List<Book> book = libraryService.findByNamedQuery(Book.class, "Book.findBooksByName", name);
+		return book;
+	}
+	
+	@Override
+	public List<Book> findBooksByName(String name, int readSize) {
+		// Verilen kitap ismine göre diğer bilgileri getiren sorguyu yaratma (liste büyüklüğü belirtilebilen)
+		List<Book> book = libraryService.findByNamedQuery(Book.class, "Book.findBooksByName", name, readSize);
+		return book;
 	}
 
 	@Override
-	public ArrayList<Book> orderByLastUpdate() {
-		return null;
+	public List<Book> findBoksByAuthor(String author) {
+		// Verilen yazar ismine göre diğer bilgileri getiren sorguyu yaratma
+				List<Book> book = libraryService.findByNamedQuery(Book.class, "Book.findBoksByAuthor", author);
+				return book;
+	}
+
+	@Override
+	public List<Book> findBoksByAuthor(String author, int readSize) {
+		// Verilen yazar ismine göre diğer bilgileri getiren sorguyu yaratma (liste büyüklüğü belirtilebilen)
+				List<Book> book = libraryService.findByNamedQuery(Book.class, "Book.findBoksByAuthor", author, readSize);
+				return book;
+	}
+	
+	@Override
+	public List<Book> findBooksByIDX(int idx) {
+		// Verilen kitap idx ine göre diğer bilgileri getiren sorguyu yaratma
+		List<Book> book = libraryService.findByNamedQuery(Book.class, "Book.findBooksByIDX", idx);
+		return book;
+	}
+	
+	@Override
+	public List<Book> findBooksByIDX(int idx, int readSize) {
+		// Verilen kitap idx ine göre diğer bilgileri getiren sorguyu yaratma (liste büyüklüğü belirtilebilen)
+		List<Book> book = libraryService.findByNamedQuery(Book.class, "Book.findBooksByIDX", idx, readSize);
+		return book;
 	}
 
 }

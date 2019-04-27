@@ -1,2 +1,5 @@
 eclipse.preferences.version=1
+encoding//ejbModule/bahar/book/bean/BookServiceBean.java=UTF-8
 encoding//ejbModule/bahar/book/bean/LibraryServiceBean.java=UTF-8
+encoding//ejbModule/bahar/book/bean/MemberBookServiceBean.java=UTF-8
+encoding//ejbModule/bahar/book/bean/MemberServiceBean.java=UTF-8

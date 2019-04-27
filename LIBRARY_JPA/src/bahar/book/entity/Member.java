@@ -15,8 +15,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "LIB_MEMBER")
-@NamedQueries({
-		@NamedQuery(name = "Member.findMembersByFirstAndLastName", query = "SELECT M.memFirstName AND M.memLastName FROM Member M WHERE M.memFirstName = 1? AND M.memLastName = 2?"),
+@NamedQueries({ 
+		@NamedQuery(name = "Member.findMembersByName", query = "SELECT M FROM Member M WHERE M.memFirstName = :name"),
+		@NamedQuery(name = "Member.findMembersByLastName", query = "SELECT M FROM Member M WHERE M.memLastName = :lastName"),
+		@NamedQuery(name = "Member.findMembersByFirstAndLastName", query = "SELECT M FROM Member M WHERE M.memFirstName = :name AND M.memLastName = :lastName"),
+		@NamedQuery(name = "Member.findMembersByIDX", query = "SELECT M FROM Member M WHERE M.idx = :idx"),
 		@NamedQuery(name = "Member.orderByLastUpdate", query = "SELECT M FROM Member M ORDER BY M.sysLastUpdate DESC") })
 
 public class Member {
@@ -39,9 +42,9 @@ public class Member {
 
 	@Column(name = "SYS_LAST_UPDATE", nullable = false)
 	private LocalDate sysLastUpdate = LocalDate.now();
-	
+
 	@OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<MemberBook> memberBook;
+	private List<MemberBook> memberBook;
 
 	public int getIdx() {
 		return idx;

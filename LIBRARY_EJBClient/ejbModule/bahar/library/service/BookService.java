@@ -1,6 +1,6 @@
 package bahar.library.service;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.Local;
 
@@ -8,7 +8,15 @@ import bahar.book.entity.Book;
 
 @Local
 public interface BookService {
-	public ArrayList<Book> findBooksByNameAndAuthor();
+	public List<Book> findBooksByName(String name);
 
-	public ArrayList<Book> orderByLastUpdate();
+	public List<Book> findBooksByName(String name, int readSize);
+
+	public List<Book> findBoksByAuthor(String author);
+
+	public List<Book> findBoksByAuthor(String author, int readSize);
+
+	public List<Book> findBooksByIDX(int idx);
+
+	public List<Book> findBooksByIDX(int idx, int readSize);
 }

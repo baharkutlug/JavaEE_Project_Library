@@ -1,28 +1,36 @@
 package bahar.book.bean;
 
-import java.util.ArrayList;
+import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import bahar.book.entity.MemberBook;
+import bahar.library.service.LibraryService;
 import bahar.library.service.MemberBookService;
 
 @Stateless
 public class MemberBookServiceBean implements MemberBookService {
 
-	@PersistenceContext(unitName = "LIBRARY_DB")
-	EntityManager em;
-
-	@SuppressWarnings("unchecked")
+	@EJB
+	private LibraryService libraryService;
+	
 	@Override
-	public ArrayList<MemberBook> findMembersByBorrowedBookIdx() {
-		return (ArrayList<MemberBook>) em.createNamedQuery("MemberBook.findMembersByBorrowedBookIdx").getResultList();
+	public List<MemberBook> findBooksByBorrowedMemberIdx() {
+		// Verilen üye idx ine göre üye adı, soyadı, kitap adı, yazarı, ödünç alma tarihi ve geri verme tarihini getiren metod
+		
+		return null;
 	}
 
 	@Override
-	public ArrayList<MemberBook> orderByLastUpdate() {
+	public List<MemberBook> findMembersByBorrowedBookIdx() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<MemberBook> listOfSpecificDateReturnBooks() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

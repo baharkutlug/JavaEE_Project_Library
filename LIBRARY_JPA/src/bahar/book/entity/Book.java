@@ -16,8 +16,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "LIB_BOOK")
 @NamedQueries({
-		@NamedQuery(name = "Book.findBooksByNameAndAuthor", query = "SELECT B.name FROM Book B WHERE B.name = 1? AND B.author = 2?"),
-		@NamedQuery(name = "Book.orderByLastUpdate", query = "SELECT B FROM Book B ORDER BY B.sys_last_update DESC") })
+		@NamedQuery(name = "Book.findBooksByName", query = "SELECT B FROM Book B WHERE B.name = :name"),
+		@NamedQuery(name = "Book.findBoksByAuthor", query = "SELECT B FROM Book B WHERE B.author = :author"),
+		@NamedQuery(name = "Book.findBooksByIDX", query = "SELECT B FROM Book B WHERE B.idx = :idx"),
+		@NamedQuery(name = "Book.orderByLastUpdate", query = "SELECT B FROM Book B ORDER BY B.sysLastUpdate DESC") })
 
 public class Book {
 

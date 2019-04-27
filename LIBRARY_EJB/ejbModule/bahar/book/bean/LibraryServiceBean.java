@@ -37,16 +37,46 @@ public class LibraryServiceBean implements LibraryService {
 	@Override
 	public <T> List<T> findByNamedQuery(Class<T> clazz, String namedQuery, Integer readSize, Object... params) {
 		return createNamedQuery(clazz, namedQuery, params).setMaxResults(readSize).getResultList();
-		
+
+	}
+
+	@Override
+	public <T> void persist(T t) throws Exception {
+		try {
+			em.persist(t);
+
+		} catch (Exception e) {
+			throw e;
+		}
+
 	}
 	
-	public Query createNamedQuery(Class<?> clazz,String namedQuery) {
-		Query query = em.createNamedQuery(namedQuery,clazz);
+	@Override
+	public <T> void remove(Class<T> clazz, Object idx) {
+		try {
+			Object entity = em.getReference(clazz, idx);
+			em.remove(entity);
+		} catch (Exception e) {
+			throw e;
+		}
+	}
+
+	@Override
+	public <T> void merge(T t) throws Exception {
+		try {
+			em.merge(t);
+		} catch (Exception e) {
+			throw e;
+		}
+	}
+
+	public Query createNamedQuery(Class<?> clazz, String namedQuery) {
+		Query query = em.createNamedQuery(namedQuery, clazz);
 		return query;
 	}
-	
-	public Query createNamedQuery(Class<?> clazz,String namedQuery, Object...params) {
-		Query query = em.createNamedQuery(namedQuery,clazz);
+
+	public Query createNamedQuery(Class<?> clazz, String namedQuery, Object... params) {
+		Query query = em.createNamedQuery(namedQuery, clazz);
 		setParams(query, params);
 		return query;
 	}

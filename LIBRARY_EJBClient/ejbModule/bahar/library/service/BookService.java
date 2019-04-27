@@ -19,4 +19,8 @@ public interface BookService {
 	public List<Book> findBooksByIDX(int idx);
 
 	public List<Book> findBooksByIDX(int idx, int readSize);
+	
+	public void saveBook(Book book);
+	
+	public void mergeBook(Book book);
 }

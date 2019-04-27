@@ -57,4 +57,22 @@ public class BookServiceBean implements BookService {
 		return book;
 	}
 
+	@Override
+	public void saveBook(Book book) {
+		try {
+			libraryService.persist(book);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void mergeBook(Book book) {
+		try {
+			libraryService.merge(book);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 }

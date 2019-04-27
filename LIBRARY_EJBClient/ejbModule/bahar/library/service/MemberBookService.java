@@ -9,10 +9,14 @@ import bahar.book.entity.MemberBook;
 @Local
 public interface MemberBookService {
 
-	public List<MemberBook> findBooksByBorrowedMemberIdx();
+	public List<MemberBook> findByMemberIdx();
 
-	public List<MemberBook> findMembersByBorrowedBookIdx();
+	public List<MemberBook> findByBookIdx();
 
 	public List<MemberBook> listOfSpecificDateReturnBooks();
+
+	public void saveMemberBook(MemberBook memberBook);
+
+	public void mergeMemberBook(MemberBook memberBook);
 
 }

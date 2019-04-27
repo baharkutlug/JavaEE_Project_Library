@@ -23,4 +23,8 @@ public interface MemberService {
 	public List<Member> findMembersByIDX(int idx);
 
 	public List<Member> findMembersByIDX(int idx, int readSize);
+
+	public void saveMember(Member member);
+
+	public void mergeMember(Member member);
 }

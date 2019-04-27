@@ -14,16 +14,15 @@ public class MemberBookServiceBean implements MemberBookService {
 
 	@EJB
 	private LibraryService libraryService;
-	
+
 	@Override
-	public List<MemberBook> findBooksByBorrowedMemberIdx() {
-		// Verilen üye idx ine göre üye adı, soyadı, kitap adı, yazarı, ödünç alma tarihi ve geri verme tarihini getiren metod
-		
+	public List<MemberBook> findByMemberIdx() {
+		//Üye idx ine göre diğer bilgileri getiren sorguyu yaratma
 		return null;
 	}
 
 	@Override
-	public List<MemberBook> findMembersByBorrowedBookIdx() {
+	public List<MemberBook> findByBookIdx() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -32,6 +31,24 @@ public class MemberBookServiceBean implements MemberBookService {
 	public List<MemberBook> listOfSpecificDateReturnBooks() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void saveMemberBook(MemberBook memberBook) {
+		try {
+			libraryService.persist(memberBook);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void mergeMemberBook(MemberBook memberBook) {
+		try {
+			libraryService.merge(memberBook);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -24,7 +24,8 @@ public class MemberServiceBean implements MemberService {
 
 	@Override
 	public List<Member> findMembersByName(String name, int readSize) {
-		// Verilen üye ismine göre diğer bilgileri getiren sorguyu yaratma (liste büyüklüğü belirtilebilen)
+		// Verilen üye ismine göre diğer bilgileri getiren sorguyu yaratma (liste
+		// büyüklüğü belirtilebilen)
 		List<Member> member = libraryService.findByNamedQuery(Member.class, "Member.findMembersByName", name, readSize);
 		return member;
 	}
@@ -38,7 +39,8 @@ public class MemberServiceBean implements MemberService {
 
 	@Override
 	public List<Member> findMembersByLastName(String lastName, int readSize) {
-		// Verilen üye soyismine göre diğer bilgileri getiren sorguyu yaratma (liste büyüklüğü belirtilebilen)
+		// Verilen üye soyismine göre diğer bilgileri getiren sorguyu yaratma (liste
+		// büyüklüğü belirtilebilen)
 		List<Member> member = libraryService.findByNamedQuery(Member.class, "Member.findMembersByLastName", lastName,
 				readSize);
 		return member;
@@ -47,16 +49,17 @@ public class MemberServiceBean implements MemberService {
 	@Override
 	public List<Member> findMembersByFirstAndLastName(String name, String lastName) {
 		// Verilen üye isim ve soyismine göre diğer bilgileri getiren sorguyu yaratma
-		List<Member> member = libraryService.findByNamedQuery(Member.class, "Member.findMembersByFirstAndLastName", name,
-				lastName);
+		List<Member> member = libraryService.findByNamedQuery(Member.class, "Member.findMembersByFirstAndLastName",
+				name, lastName);
 		return member;
 	}
 
 	@Override
 	public List<Member> findMembersByFirstAndLastName(String name, String lastName, int readSize) {
-		// Verilen üye isim ve soyismine göre diğer bilgileri getiren sorguyu yaratma (liste büyüklüğü belirtilebilen)
-		List<Member> member = libraryService.findByNamedQuery(Member.class, "Member.findMembersByFirstAndLastName", name,
-				lastName, readSize);
+		// Verilen üye isim ve soyismine göre diğer bilgileri getiren sorguyu yaratma
+		// (liste büyüklüğü belirtilebilen)
+		List<Member> member = libraryService.findByNamedQuery(Member.class, "Member.findMembersByFirstAndLastName",
+				name, lastName, readSize);
 		return member;
 	}
 
@@ -69,9 +72,28 @@ public class MemberServiceBean implements MemberService {
 
 	@Override
 	public List<Member> findMembersByIDX(int idx, int readSize) {
-		// Verilen üye idx ine göre diğer bilgileri getiren sorguyu yaratma (liste büyüklüğü belirtilebilen)
+		// Verilen üye idx ine göre diğer bilgileri getiren sorguyu yaratma (liste
+		// büyüklüğü belirtilebilen)
 		List<Member> member = libraryService.findByNamedQuery(Member.class, "Member.findMembersByIDX", idx, readSize);
 		return member;
+	}
+
+	@Override
+	public void saveMember(Member member) {
+		try {
+			libraryService.persist(member);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void mergeMember(Member member) {
+		try {
+			libraryService.merge(member);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

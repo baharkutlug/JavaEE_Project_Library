@@ -11,5 +11,9 @@
         <dependent-module archiveName="LIBRARY_EJBClient.jar" deploy-path="/" handle="module:/resource/LIBRARY_EJBClient/LIBRARY_EJBClient">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="LIBRARY_WS.war" deploy-path="/" handle="module:/resource/LIBRARY_WS/LIBRARY_WS">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
     </wb-module>
 </project-modules>

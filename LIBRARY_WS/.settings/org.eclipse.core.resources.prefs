@@ -1,0 +1,17 @@
+eclipse.preferences.version=1
+encoding//src/bahar/com/Library/FindBooksByAuthorRequest.java=UTF-8
+encoding//src/bahar/com/Library/FindBooksByIDXRequest.java=UTF-8
+encoding//src/bahar/com/Library/FindBooksByIDXResponse.java=UTF-8
+encoding//src/bahar/com/Library/FindBooksByNameRequest.java=UTF-8
+encoding//src/bahar/com/Library/FindBooksByNameResponse.java=UTF-8
+encoding//src/bahar/com/Library/LibBookList.java=UTF-8
+encoding//src/bahar/com/Library/LibraryPortType.java=UTF-8
+encoding//src/bahar/com/Library/LibraryService.java=UTF-8
+encoding//src/bahar/com/Library/LibraryServiceLocator.java=UTF-8
+encoding//src/bahar/com/Library/LibrarySoapBindingImpl.java=UTF-8
+encoding//src/bahar/com/Library/LibrarySoapBindingSkeleton.java=UTF-8
+encoding//src/bahar/com/Library/LibrarySoapBindingStub.java=UTF-8
+encoding//src/bahar/com/Library/MergeBookRequest.java=UTF-8
+encoding//src/bahar/com/Library/MergeBookResponse.java=UTF-8
+encoding//src/bahar/com/Library/SaveBookRequest.java=UTF-8
+encoding//src/bahar/com/Library/SaveBookResponse.java=UTF-8

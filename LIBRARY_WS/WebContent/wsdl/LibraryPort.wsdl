@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:lib="http://com.bahar/Library" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://com.bahar/Library">
+	<wsdl:types>
+		<xs:schema targetNamespace="http://com.bahar/Library">
+
+			<xs:complexType name="libBookList">
+				<xs:sequence>
+					<xs:element name="idx" type="xs:long"/>
+					<xs:element name="name" type="xs:string"/>
+					<xs:element name="orjName" type="xs:string"/>
+					<xs:element name="author" type="xs:string"/>
+					<xs:element name="translator" type="xs:string"/>
+					<xs:element name="publishYear" type="xs:int"/>
+					<xs:element name="publisher" type="xs:string"/>
+					<xs:element name="bookType" type="xs:string"/>
+					<xs:element name="numOfPages" type="xs:int"/>
+					<xs:element name="sysVersion" type="xs:int"/>
+					<xs:element name="sysLastUpdate" type="xs:date"/>
+				</xs:sequence>
+			</xs:complexType>
+
+			<xs:element name="findBooksByNameRequest">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="bookName" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="findBooksByNameResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Result" type="lib:libBookList"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="findBooksByAuthorRequest">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="authorName" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="findBooksByAuthorResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Result" type="lib:libBookList"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="findBooksByIDXRequest">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="bookIDX" type="xs:long"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="findBooksByIDXResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Result" type="lib:libBookList"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="saveBookRequest">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="idx" type="xs:long"/>
+						<xs:element name="name" type="xs:string"/>
+						<xs:element name="orjName" type="xs:string"/>
+						<xs:element name="author" type="xs:string"/>
+						<xs:element name="translator" type="xs:string"/>
+						<xs:element name="publishYear" type="xs:int"/>
+						<xs:element name="publisher" type="xs:string"/>
+						<xs:element name="bookType" type="xs:string"/>
+						<xs:element name="numOfPages" type="xs:int"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="saveBookResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Result" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="mergeBookRequest">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="idx" type="xs:long"/>
+						<xs:element name="name" type="xs:string"/>
+						<xs:element name="orjName" type="xs:string"/>
+						<xs:element name="author" type="xs:string"/>
+						<xs:element name="translator" type="xs:string"/>
+						<xs:element name="publishYear" type="xs:int"/>
+						<xs:element name="publisher" type="xs:string"/>
+						<xs:element name="bookType" type="xs:string"/>
+						<xs:element name="numOfPages" type="xs:int"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="mergeBookResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Result" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+		</xs:schema>
+
+	</wsdl:types>
+
+	<wsdl:message name="findBooksByNameReq">
+		<wsdl:part element="lib:findBooksByNameRequest" name="parameter"/>
+	</wsdl:message>
+	<wsdl:message name="findBooksByNameResp">
+		<wsdl:part element="lib:findBooksByNameResponse" name="parameter"/>
+	</wsdl:message>
+
+	<wsdl:message name="findBooksByAuthorReq">
+		<wsdl:part element="lib:findBooksByAuthorRequest" name="parameter"/>
+	</wsdl:message>
+	<wsdl:message name="findBooksByAuthorResp">
+		<wsdl:part element="lib:findBooksByNameResponse" name="parameter"/>
+	</wsdl:message>
+
+	<wsdl:message name="findBooksByIDXReq">
+		<wsdl:part element="lib:findBooksByIDXRequest" name="parameter"/>
+	</wsdl:message>
+	<wsdl:message name="findBooksByIDXResp">
+		<wsdl:part element="lib:findBooksByIDXResponse" name="parameter"/>
+	</wsdl:message>
+
+	<wsdl:message name="saveBookReq">
+		<wsdl:part element="lib:saveBookRequest" name="parameter"/>
+	</wsdl:message>
+	<wsdl:message name="saveBookResp">
+		<wsdl:part element="lib:saveBookResponse" name="parameter"/>
+	</wsdl:message>
+
+	<wsdl:message name="mergeBookReq">
+		<wsdl:part element="lib:mergeBookRequest" name="parameter"/>
+	</wsdl:message>
+	<wsdl:message name="mergeBookResp">
+		<wsdl:part element="lib:mergeBookResponse" name="parameter"/>
+	</wsdl:message>
+
+	<wsdl:portType name="LibraryPortType">	
+		<wsdl:operation name="findBooksByName">
+			<wsdl:input message="lib:findBooksByNameReq"/>
+			<wsdl:output message="lib:findBooksByNameResp"/>
+		</wsdl:operation>
+
+		<wsdl:operation name="findBooksByAuthor">
+			<wsdl:input message="lib:findBooksByAuthorReq"/>
+			<wsdl:output message="lib:findBooksByAuthorResp"/>
+		</wsdl:operation>
+
+		<wsdl:operation name="findBooksByIDX">
+			<wsdl:input message="lib:findBooksByIDXReq"/>
+			<wsdl:output message="lib:findBooksByIDXResp"/>
+		</wsdl:operation>
+
+		<wsdl:operation name="saveBook">
+			<wsdl:input message="lib:saveBookReq"/>
+			<wsdl:output message="lib:saveBookResp"/>
+		</wsdl:operation>
+
+		<wsdl:operation name="mergeBook">
+			<wsdl:input message="lib:mergeBookReq"/>
+			<wsdl:output message="lib:mergeBookResp"/>
+		</wsdl:operation>
+
+	</wsdl:portType>
+
+	<wsdl:binding xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="LibrarySoapBinding" type="lib:LibraryPortType">
+		<wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+		<wsdl:operation name="findBooksByName">
+			<soap:operation soapAction="findBooksByName"/>
+			<wsdl:input>
+				<soap:body parts="parameter" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="findBooksByAuthor">
+			<soap:operation soapAction="findBooksByAuthor"/>
+			<wsdl:input>
+				<soap:body parts="parameter" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="findBooksByIDX">
+			<soap:operation soapAction="findBooksByIDX"/>
+			<wsdl:input>
+				<soap:body parts="parameter" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="saveBook">
+			<soap:operation soapAction="saveBook"/>
+			<wsdl:input>
+				<soap:body parts="parameter" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="mergeBook">
+			<soap:operation soapAction="mergeBook"/>
+			<wsdl:input>
+				<soap:body parts="parameter" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+
+	</wsdl:binding>
+
+	<wsdl:service name="LibraryService">
+		<wsdl:port binding="lib:LibrarySoapBinding" name="LibraryPort">
+			<soap:address xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" location="http://localhost:7001/dejwo%C4%B1rjf/services/LibraryPort"/>
+		</wsdl:port>
+
+	</wsdl:service>
+
+</wsdl:definitions>

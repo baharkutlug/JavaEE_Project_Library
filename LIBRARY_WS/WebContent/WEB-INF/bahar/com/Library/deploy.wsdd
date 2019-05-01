@@ -1,0 +1,106 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from LibraryService WSDL service -->
+
+  <service name="LibraryPort" provider="java:RPC" style="document" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://com.bahar/Library"/>
+      <parameter name="wsdlServiceElement" value="LibraryService"/>
+      <parameter name="schemaUnqualified" value="http://com.bahar/Library"/>
+      <parameter name="wsdlServicePort" value="LibraryPort"/>
+      <parameter name="className" value="bahar.com.Library.LibrarySoapBindingSkeleton"/>
+      <parameter name="wsdlPortType" value="LibraryPortType"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <parameter name="allowedMethods" value="*"/>
+
+      <typeMapping
+        xmlns:ns="http://com.bahar/Library"
+        qname="ns:>findBooksByNameResponse"
+        type="java:bahar.com.Library.FindBooksByNameResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://com.bahar/Library"
+        qname="ns:>saveBookResponse"
+        type="java:bahar.com.Library.SaveBookResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://com.bahar/Library"
+        qname="ns:>mergeBookResponse"
+        type="java:bahar.com.Library.MergeBookResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://com.bahar/Library"
+        qname="ns:>findBooksByAuthorRequest"
+        type="java:bahar.com.Library.FindBooksByAuthorRequest"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://com.bahar/Library"
+        qname="ns:>findBooksByIDXResponse"
+        type="java:bahar.com.Library.FindBooksByIDXResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://com.bahar/Library"
+        qname="ns:>saveBookRequest"
+        type="java:bahar.com.Library.SaveBookRequest"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://com.bahar/Library"
+        qname="ns:>findBooksByNameRequest"
+        type="java:bahar.com.Library.FindBooksByNameRequest"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://com.bahar/Library"
+        qname="ns:>findBooksByIDXRequest"
+        type="java:bahar.com.Library.FindBooksByIDXRequest"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://com.bahar/Library"
+        qname="ns:libBookList"
+        type="java:bahar.com.Library.LibBookList"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://com.bahar/Library"
+        qname="ns:>mergeBookRequest"
+        type="java:bahar.com.Library.MergeBookRequest"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

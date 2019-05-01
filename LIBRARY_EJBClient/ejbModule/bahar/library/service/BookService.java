@@ -12,9 +12,9 @@ public interface BookService {
 
 	public List<Book> findBooksByName(String name, int readSize);
 
-	public List<Book> findBoksByAuthor(String author);
+	public List<Book> findBooksByAuthor(String author);
 
-	public List<Book> findBoksByAuthor(String author, int readSize);
+	public List<Book> findBooksByAuthor(String author, int readSize);
 
 	public List<Book> findBooksByIDX(int idx);
 

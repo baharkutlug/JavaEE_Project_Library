@@ -30,14 +30,14 @@ public class BookServiceBean implements BookService {
 	}
 
 	@Override
-	public List<Book> findBoksByAuthor(String author) {
+	public List<Book> findBooksByAuthor(String author) {
 		// Verilen yazar ismine göre diğer bilgileri getiren sorguyu yaratma
 				List<Book> book = libraryService.findByNamedQuery(Book.class, "Book.findBoksByAuthor", author);
 				return book;
 	}
 
 	@Override
-	public List<Book> findBoksByAuthor(String author, int readSize) {
+	public List<Book> findBooksByAuthor(String author, int readSize) {
 		// Verilen yazar ismine göre diğer bilgileri getiren sorguyu yaratma (liste büyüklüğü belirtilebilen)
 				List<Book> book = libraryService.findByNamedQuery(Book.class, "Book.findBoksByAuthor", author, readSize);
 				return book;
